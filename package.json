@@ -1,0 +1,23 @@
+{
+  "name": "proyecto_progra_4",
+  "version": "1.0.0",
+  "description": "servidor del proyecto de programacion 4",
+  "main": "index.js",
+  "dependencies": {
+    "hapi": "^13.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardo210/Backend.git"
+  },
+  "author": "ricardo,nelson, gisselle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricardo210/Backend/issues"
+  },
+  "homepage": "https://github.com/ricardo210/Backend#readme"
+}
