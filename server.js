@@ -14,7 +14,7 @@ server.connection({
               }
 });
 
-mongoose.connect('mongodb://localhost:27017/db');
+mongoose.connect('mongodb://localhost:27017/br');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

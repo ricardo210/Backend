@@ -1,23 +1,29 @@
 {
-  "name": "proyecto_progra_4",
+  "name": "ricardo",
   "version": "1.0.0",
-  "description": "servidor del proyecto de programacion 4",
-  "main": "index.js",
-  "dependencies": {
-    "hapi": "^13.0.0"
-  },
-  "devDependencies": {},
+  "description": "drescripcion",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ricardo210/Backend.git"
-  },
-  "author": "ricardo,nelson, gisselle",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ricardo210/Backend/issues"
+  "dependencies": {
+    "hapi": "^13.0.0"
   },
-  "homepage": "https://github.com/ricardo210/Backend#readme"
+
+  "engines": {
+    "node": "^4.2.1"
+  },
+  "dependencies": {
+    "boom": "^3.0.0",
+    "crypto-js": "^3.1.5",
+    "hapi": "^11.1.0",
+    "hapi-auth-cookie": "^3.1.0",
+    "hapi-mongodb": "^4.1.0",
+    "inert": "^3.2.0",
+    "joi": "^7.0.1",
+    "mongoose": "^4.2.6",
+    "mongoose-unique-validator": "^0.6.1"
+  }
 }
