@@ -22,7 +22,6 @@ exports.createUser = {
           cell : null,
           address : null,
           email : null,
-          scope : null,
           scope : request.payload.scope
         });
       }else {
