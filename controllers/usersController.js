@@ -23,6 +23,7 @@ exports.createUser = {
           address : null,
           email : null,
           scope : null,
+          scope : request.payload.scope
         });
       }else {
         newUser = new user({
@@ -52,5 +53,56 @@ exports.createUser = {
   handler: function(request, reply){
     var users = user.find({});
     reply(users);
+  }
+};
+
+
+
+exports.updateUser = {
+  handler: function(request, reply){
+    var upUser = user.findByIdAndUpdate(encodeURIComponent(request.params.userId), {
+      if (tempScope =="admin") {
+        upUser = new user({
+          username : request.payload.username,
+          password : SHA3(request.payload.password),
+          code: request.payload.code,
+          name : null,
+          cell : null,
+          address : null,
+          email : null,
+          scope : request.payload.scope
+        });
+      }else {
+        upUser = new user({
+          username : request.payload.username,
+          password : SHA3(request.payload.password),
+          code: request.payload.code,
+          name : request.payload.name,
+          cell : request.payload.cell,
+          address : request.payload.address,
+          email : request.payload.email,
+          scope : request.payload.scope,
+        });
+      }
+    },function(err){
+      if(err){
+        console.log(err);
+        reply("error removing")
+      }
+      console.log('book updated');
+      return  reply('book update');
+    });
+  }
+};
+exports.deleteUser = {
+  handler: function(request, reply){
+    var users = user.findByIdAndRemove(encodeURIComponent(request.params.userId), function(err){
+      if(err){
+        console.log(err);
+        reply("error removing")
+      }
+      console.log('book deleted');
+      return  reply('book deleted');
+    });
   }
 };
