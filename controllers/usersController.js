@@ -13,7 +13,7 @@ exports.createUser = {
       var newUser;
 
 
-      if (tempScope =="admin") {
+      if (tempScope === "admin") {
         newUser = new user({
           username : request.payload.username,
           password : SHA3(request.payload.password),
