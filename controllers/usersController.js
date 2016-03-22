@@ -9,7 +9,7 @@ exports.createUser = {
     },
     handler: function(request, reply) {
       console.log(request.payload);
-      var tempScope = request.payload.scope;
+      var tempScope = request.params.scope;
       var newUser;
 
 
@@ -59,20 +59,8 @@ exports.createUser = {
 
 exports.updateUser = {
   handler: function(request, reply){
+    var tempScope = request.params.scope;
     var upUser = user.findByIdAndUpdate(encodeURIComponent(request.params.userId), {
-      if (tempScope =="admin") {
-        upUser = new user({
-          username : request.payload.username,
-          password : SHA3(request.payload.password),
-          code: request.payload.code,
-          name : null,
-          cell : null,
-          address : null,
-          email : null,
-          scope : request.payload.scope
-        });
-      }else {
-        upUser = new user({
           username : request.payload.username,
           password : SHA3(request.payload.password),
           code: request.payload.code,
@@ -81,8 +69,6 @@ exports.updateUser = {
           address : request.payload.address,
           email : request.payload.email,
           scope : request.payload.scope,
-        });
-      }
     },function(err){
       if(err){
         console.log(err);
@@ -92,7 +78,7 @@ exports.updateUser = {
       return  reply('book update');
     });
   }
-};
+  };
 exports.deleteUser = {
   handler: function(request, reply){
     var users = user.findByIdAndRemove(encodeURIComponent(request.params.userId), function(err){
