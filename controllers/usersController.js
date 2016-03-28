@@ -20,6 +20,7 @@ exports.createUser = {
           code: request.payload.code,
           name : null,
           cell : null,
+          phone : null,
           address : null,
           email : null,
           scope : request.payload.scope
@@ -31,6 +32,7 @@ exports.createUser = {
           code: request.payload.code,
           name : request.payload.name,
           cell : request.payload.cell,
+          phone : request.payload.phone,
           address : request.payload.address,
           email : request.payload.email,
           scope : request.payload.scope,
@@ -59,35 +61,30 @@ exports.createUser = {
 
 exports.updateUser = {
   handler: function(request, reply){
-    var tempScope = request.params.scope;
-    var upUser = user.findByIdAndUpdate(encodeURIComponent(request.params.userId), {
-          username : request.payload.username,
-          password : SHA3(request.payload.password),
-          code: request.payload.code,
-          name : request.payload.name,
-          cell : request.payload.cell,
-          address : request.payload.address,
-          email : request.payload.email,
-          scope : request.payload.scope,
-    },function(err){
-      if(err){
-        console.log(err);
-        reply("error removing")
-      }
-      console.log('book updated');
-      return  reply('book update');
+    var tempScope = request.payload.scope;
+          user.findOne({_id:request.payload.codigo._id},function(err,usuario) {
+          usuario.username = request.payload.codigo.username;
+          usuario.password = SHA3(request.payload.codigo.password);
+          usuario.code = request.payload.codigo.code;
+          usuario.name = request.payload.codigo.name;
+          usuario.cell = request.payload.codigo.cell;
+          usuario.phone = request.payload.codigo.phone;
+          usuario.address = request.payload.codigo.address;
+          usuario.email = request.payload.codigo.email;
+          usuario.scope = request.payload.codigo.scope;
+          usuario.save();
+          return  reply(usuario);
     });
-  }
+    }
   };
-exports.deleteUser = {
-  handler: function(request, reply){
-    var users = user.findByIdAndRemove(encodeURIComponent(request.params.userId), function(err){
-      if(err){
-        console.log(err);
-        reply("error removing")
-      }
-      console.log('book deleted');
-      return  reply('book deleted');
-    });
-  }
+  exports.deleteUser = {
+    handler: function(request, reply){
+      var users = user.findByIdAndRemove(encodeURIComponent(request.params.userId), function(err){
+        if(err){
+          console.log(err);
+          reply("error removing")
+        }
+        return  reply('User deleted');
+      });
+    }
 };
