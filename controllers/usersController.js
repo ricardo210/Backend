@@ -18,7 +18,7 @@ exports.createUser = {
           username : request.payload.username,
           password : SHA3(request.payload.password),
           code: request.payload.code,
-          name : null,
+          name : request.payload.name,
           cell : null,
           phone : null,
           address : null,
