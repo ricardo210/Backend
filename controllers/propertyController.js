@@ -9,9 +9,10 @@ exports.createProperty = {
     handler: function(request, reply) {
       var newProperty= new property({
           name : request.payload.name,
-          cell : request.payload.cell,
-          phone : request.payload.phone,
           address : request.payload.address,
+          type : request.payload.type,
+          category : request.payload.category,
+          advertiser: request.payload.advertiser,
           images : request.payload.images,
           available : true
         });
@@ -38,9 +39,10 @@ exports.updateProperty = {
   handler: function(request, reply){
           property.findOne({_id:request.payload.codigo._id},function(err,propiedad) {
           propiedad.name = request.payload.codigo.name;
-          propiedad.cell = request.payload.codigo.cell;
-          propiedad.phone = request.payload.codigo.phone;
           propiedad.address = request.payload.codigo.address;
+          propiedad.type = request.payload.codigo.type;
+          propiedad.category = request.payload.codigo.category;
+          propiedad.advertiser = request.payload.codigo.advertiser;
           propiedad.images = request.payload.codigo.images;
           propiedad.available = request.payload.codigo.available;
           propiedad.save();
