@@ -7,17 +7,17 @@ exports.sendMessage = {
   },
   handler: function(request, reply){
     var newMessage = new contactMe ({
-      name : request.payload.nameMessage,
-      email : request.payload.emailMessage,
-      number : request.payload.numberMessage,
-      message : request.payload.messageMessage,
-      state: "No leído"
+      name : request.payload.name,
+      email : request.payload.email,
+      number : request.payload.number,
+      message : request.payload.message,
+      state: request.payload.state
     });
     newMessage.save();
     console.log('message send');
     return reply('ok');
   }
-}
+};
 
 exports.getMessage = {
   auth: {
@@ -29,4 +29,19 @@ exports.getMessage = {
     var messages = contactMe.find({});
     reply(messages);
   }
-}
+};
+
+exports.updateMessage = {
+  handler: function(request, reply){
+          contactMe.findOne({id:request.payload._id},function(err,item) {
+          console.log(item);
+          item.name = request.payload.name;
+          item.message = request.payload.message;
+          item.state = "Revisado";
+          item.email = request.payload.email;
+          item.number = request.payload.number;
+          item.save();
+          return  reply(item);
+    });
+    }
+  };
