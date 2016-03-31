@@ -10,5 +10,6 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 	{method: 'GET', path: '/v1/logout', config: authController.logout},
 	{method: 'DELETE', path: '/v1/erase/{userId}', config: usersController.deleteUser},
 	{method: 'POST', path: '/v1/send-message', config: contactController.sendMessage},
+	{method: 'POST', path: '/v1/read-message', config: contactController.updateMessage},
 	{method: 'GET', path: '/v1/load-message', config: contactController.getMessage}
 ];

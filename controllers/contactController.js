@@ -6,12 +6,13 @@ exports.sendMessage = {
     strategy: 'session'
   },
   handler: function(request, reply){
+    console.log(request);
     var newMessage = new contactMe ({
-      name : request.payload.nameMessage,
-      email : request.payload.emailMessage,
-      number : request.payload.numberMessage,
-      message : request.payload.messageMessage,
-      state: "No leído"
+      name : request.payload.name,
+      email : request.payload.email,
+      number : request.payload.number,
+      message : request.payload.message,
+      state: request.payload.state
     });
     newMessage.save();
     console.log('message send');
@@ -30,3 +31,18 @@ exports.getMessage = {
     reply(messages);
   }
 }
+
+exports.updateMessage = {
+  handler: function(request, reply){
+          contactMe.findOne({_id:request.payload._id},function(err,item) {
+          item.message = request.payload.message;
+          item.state = "Revisado";
+          item.email = request.payload.email;
+          item.number = request.payload.number;
+          item.save();
+          return  reply(item);
+    });
+    console.log(request+ "aqui entro backend");
+
+    }
+  }
