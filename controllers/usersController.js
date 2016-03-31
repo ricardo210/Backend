@@ -8,8 +8,11 @@ exports.createUser = {
       strategy:'session'
     },
     handler: function(request, reply) {
+      console.log(request.payload);
       var tempScope = request.params.scope;
       var newUser;
+
+
       if (tempScope === "admin") {
         newUser = new user({
           username : request.payload.username,
@@ -32,7 +35,7 @@ exports.createUser = {
           phone : request.payload.phone,
           address : request.payload.address,
           email : request.payload.email,
-          scope : request.payload.scope
+          scope : request.payload.scope,
         });
       }
 
@@ -58,6 +61,7 @@ exports.createUser = {
 
 exports.updateUser = {
   handler: function(request, reply){
+    var tempScope = request.payload.scope;
           user.findOne({_id:request.payload.codigo._id},function(err,usuario) {
           usuario.username = request.payload.codigo.username;
           usuario.password = SHA3(request.payload.codigo.password);
