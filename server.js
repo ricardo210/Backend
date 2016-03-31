@@ -14,7 +14,7 @@ server.connection({
               }
 });
 
-mongoose.connect('mongodb://localhost:27017/br');
+mongoose.connect('mongodb://admin:admin@ds011820.mlab.com:11820/br_progra4');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
