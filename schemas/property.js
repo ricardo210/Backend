@@ -4,11 +4,11 @@ var uniqueValidator = require('mongoose-unique-validator');
 var PropertySchema = new mongoose.Schema({
   name : String,
   address : String,
-  email : String,
-  cell : String,
-  phone : String,
+  type : String,
+  category : String,
+  advertiser : String,
   images : String,
-  available : Boolean 
+  available : String 
 });
 
 module.exports = mongoose.model('Property', PropertySchema);
