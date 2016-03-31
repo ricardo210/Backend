@@ -8,7 +8,7 @@ var PropertySchema = new mongoose.Schema({
   category : String,
   advertiser : String,
   images : String,
-  available : Boolean 
+  available : String 
 });
 
 module.exports = mongoose.model('Property', PropertySchema);

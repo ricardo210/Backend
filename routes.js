@@ -13,7 +13,7 @@ exports.endpoints = [{method: 'GET', path: '/', config: {handler: function(reque
 	{method: 'POST', path: '/v1/send-message', config: contactController.sendMessage},
 	{method: 'GET', path: '/v1/load-message', config: contactController.getMessage},
 	{method: 'POST', path: '/v1/newproperty', config: propertyController.createProperty},
-	{method: 'POST', path: '/v1/updateproperty', config: propertyController.updateProperty},
+	{method: 'PUT', path: '/v1/updateproperty/{propertyId}', config: propertyController.updateProperty},
 	{method: 'GET', path: '/v1/properties', config: propertyController.getProperty},
 	{method: 'DELETE', path: '/v1/deleteP/{propertyId}', config: propertyController.deleteProperty}
 ];

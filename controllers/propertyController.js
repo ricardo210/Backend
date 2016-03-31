@@ -37,16 +37,16 @@ exports.createProperty = {
 
 exports.updateProperty = {
   handler: function(request, reply){
-          property.findOne({_id:request.payload.codigo._id},function(err,propiedad) {
-          propiedad.name = request.payload.codigo.name;
-          propiedad.address = request.payload.codigo.address;
-          propiedad.type = request.payload.codigo.type;
-          propiedad.category = request.payload.codigo.category;
-          propiedad.advertiser = request.payload.codigo.advertiser;
-          propiedad.images = request.payload.codigo.images;
-          propiedad.available = request.payload.codigo.available;
-          propiedad.save();
-          return  reply(propiedad);
+          property.findOne({id:request.payload.codigo.id},function(err,item) {
+          item.name = request.payload.codigo.name;
+          item.address = SHA3(request.payload.codigo.address);
+          item.type = request.payload.codigo.type;
+          item.category = request.payload.codigo.category;
+          item.advertiser = request.payload.codigo.advertiser;
+          item.images = request.payload.codigo.images;
+          item.available = request.payload.codigo.available;
+          item.save();
+          return  reply(item);
     });
     }
   };
