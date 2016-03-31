@@ -6,7 +6,6 @@ exports.sendMessage = {
     strategy: 'session'
   },
   handler: function(request, reply){
-    console.log(request);
     var newMessage = new contactMe ({
       name : request.payload.name,
       email : request.payload.email,
@@ -18,7 +17,7 @@ exports.sendMessage = {
     console.log('message send');
     return reply('ok');
   }
-}
+};
 
 exports.getMessage = {
   auth: {
@@ -30,11 +29,13 @@ exports.getMessage = {
     var messages = contactMe.find({});
     reply(messages);
   }
-}
+};
 
 exports.updateMessage = {
   handler: function(request, reply){
-          contactMe.findOne({_id:request.payload._id},function(err,item) {
+          contactMe.findOne({id:request.payload._id},function(err,item) {
+          console.log(item);
+          item.name = request.payload.name;
           item.message = request.payload.message;
           item.state = "Revisado";
           item.email = request.payload.email;
@@ -42,7 +43,5 @@ exports.updateMessage = {
           item.save();
           return  reply(item);
     });
-    console.log(request+ "aqui entro backend");
-
     }
-  }
+  };
