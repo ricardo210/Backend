@@ -14,7 +14,7 @@ exports.createProperty = {
           category : request.payload.category,
           advertiser: request.payload.advertiser,
           images : request.payload.images,
-          available : true
+          available : request.payload.available
         });
         
        newProperty.save(function (err) {
